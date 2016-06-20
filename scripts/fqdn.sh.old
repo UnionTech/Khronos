@@ -1,0 +1,23 @@
+#!/bin/bash
+
+IP=88.177.168.133
+
+#$1 1)creer 2)suppression
+#$2 nom fqdn
+cd /etc/tinydns/root
+
+echo "Que voulez vous faire? 1)créer  2)supprimer"
+read r
+
+case $r in
+	"1")
+	echo "tapez le nom du site a creer"
+	read fqdn
+	sudo bash -c "echo '+$fqdn.khronos.itinet.fr:$IP' >> data"
+	make
+	ssh -i /root/.ssh/id_rsa root@dedibox.itinet.fr
+	;;
+	
+
+esac
+
